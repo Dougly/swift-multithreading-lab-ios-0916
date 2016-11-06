@@ -101,7 +101,7 @@ extension ImageViewController: UIImagePickerControllerDelegate, UINavigationCont
                                didFinishPickingMediaWithInfo info: [String : Any]) {
         
         flatigram.image = info[UIImagePickerControllerOriginalImage] as? UIImage
-        flatigram.state = .unfiltered
+        flatigram.imageState = .unfiltered
         imageView.image = flatigram.image
         imageView.contentMode = .scaleAspectFit
         self.setUpScrollView()

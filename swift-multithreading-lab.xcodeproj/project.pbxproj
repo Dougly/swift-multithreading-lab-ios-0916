@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		111D96241DCE2B440036969B /* Flatigram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111D96231DCE2B440036969B /* Flatigram.swift */; };
+		111D96261DCE37A50036969B /* FilterOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111D96251DCE37A50036969B /* FilterOperation.swift */; };
 		1B7E701B1D4A414800DC8364 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7E701A1D4A414800DC8364 /* ImageViewController.swift */; };
 		1B98ECA91DCA920D008F7136 /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B98ECA81DCA920D008F7136 /* UIImageExtensions.swift */; };
 		1BD309A81D4654E300A76984 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD309A71D4654E300A76984 /* AppDelegate.swift */; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		111D96231DCE2B440036969B /* Flatigram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flatigram.swift; sourceTree = "<group>"; };
+		111D96251DCE37A50036969B /* FilterOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterOperation.swift; sourceTree = "<group>"; };
 		1B7E701A1D4A414800DC8364 /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		1B98ECA81DCA920D008F7136 /* UIImageExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
 		1BD309A41D4654E300A76984 /* swift-multithreading-lab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swift-multithreading-lab.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,6 +109,8 @@
 			isa = PBXGroup;
 			children = (
 				1B7E701A1D4A414800DC8364 /* ImageViewController.swift */,
+				111D96251DCE37A50036969B /* FilterOperation.swift */,
+				111D96231DCE2B440036969B /* Flatigram.swift */,
 				1BFB76E91DC7BF8000F2EF36 /* ImageViewControllerExtensions.swift */,
 				1B98ECA81DCA920D008F7136 /* UIImageExtensions.swift */,
 				1BD309AB1D4654E300A76984 /* Main.storyboard */,
@@ -248,8 +254,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B7E701B1D4A414800DC8364 /* ImageViewController.swift in Sources */,
+				111D96261DCE37A50036969B /* FilterOperation.swift in Sources */,
 				1BFB76EA1DC7BF8000F2EF36 /* ImageViewControllerExtensions.swift in Sources */,
 				1BD309A81D4654E300A76984 /* AppDelegate.swift in Sources */,
+				111D96241DCE2B440036969B /* Flatigram.swift in Sources */,
 				1B98ECA91DCA920D008F7136 /* UIImageExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
