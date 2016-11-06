@@ -38,22 +38,26 @@ class ImageViewController : UIViewController {
         selectImage()
     }
     
-    func startProcess() {
+    
+    func startProcess () {
         
         filterButton.isEnabled = false
         chooseImageButton.isEnabled = false
         activityIndicator.startAnimating()
         
-        filterImage { (result) in
-            OperationQueue.main.addOperation {
-                result ? print("Image successfully filtered") : print("Image filtering did not complete")
-                self.imageView.image = self.flatigram.image
-                self.activityIndicator.stopAnimating()
-                self.filterButton.isEnabled = true
-                self.chooseImageButton.isEnabled = true
-            }
+        filterImage { (success) in
+            print("Success?: \(success)")
+            self.flatigram.imageState = .filtered
+            self.imageView.image = self.flatigram.image
+            self.filterButton.isEnabled = true
+            self.chooseImageButton.isEnabled = true
+            self.activityIndicator.stopAnimating()
         }
+        
+        
     }
+    
+    
     
     @IBAction func filterButtonTapped(_ sender: AnyObject) {
         if flatigram.imageState == .unfiltered {
@@ -70,43 +74,58 @@ extension ImageViewController {
     func filterImage(with completion: @escaping (Bool) -> Void) {
         
         let queue = OperationQueue()
+        var operations: [FilterOperation] = []
+        let totalOperations = filtersToApply.count
+        var completedOperations = 0 {
+            didSet {
+                if totalOperations == completedOperations {
+                    print("all operations finished")
+                    DispatchQueue.main.async {
+                        self.imageView.image = self.flatigram.image
+                    }
+                    completion(true)
+                } else {
+                    print("waiting on \(operations.count) operations")
+                }
+
+            }
+        }
+    
         
         queue.name = "Image Filtration Queue"
         queue.qualityOfService = .userInitiated
         queue.maxConcurrentOperationCount = 1
         
-        
-        for filter in self.filtersToApply {
-            
-            let filterer = FilterOperation(flatigram: self.flatigram, filter: filter)
-            
-            filterer.completionBlock = {
-                
-                if filterer.isCancelled {
-                    completion(false)
-                    return
+        for filter in filtersToApply {
+            let operation = FilterOperation(flatigram: self.flatigram, filter: filter)
+            operation.completionBlock = {
+                DispatchQueue.main.async {
+                    print("added \(filter) to image")
+                    completedOperations += 1
                 }
-                
-                if queue.operationCount == 0 {
-                    DispatchQueue.main.async {
-                        self.flatigram.imageState = .filtered
-                        completion(true)
-                    }
-                }
-                
-                queue.addOperation(filterer)
-                print("Added FilterOperation with \(filter) to \(queue.name!)")
             }
-            
-            
-            
-            print("**** operation count: \(queue.operations.count)")
-            
-            
-            
-            
+            operations.append(operation)
         }
         
+        queue.addOperations(operations, waitUntilFinished: false)
         
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        
+
+
